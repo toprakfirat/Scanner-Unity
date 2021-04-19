@@ -6,6 +6,9 @@ public class PlayerMovementScript : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public Vector2 direction;
+    public Rigidbody2D rb2d;
+    public float thrust;
+    public float shootingForce;
     float rotationZ;
 
     public float timer = 0f;
@@ -16,13 +19,13 @@ public class PlayerMovementScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        rb2d = gameObject.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 pos = transform.position;
+        /*Vector3 pos = transform.position;
         float maxspeed = 20f;
 
 
@@ -67,9 +70,30 @@ public class PlayerMovementScript : MonoBehaviour
 
         }
 
-        transform.position = pos;
+        transform.position = pos;*/
 
-        
+        if (Input.GetKey("w"))
+        {
+            rb2d.AddForce(new Vector2(0, 1) * thrust);
+            //rb2d.velocity = new Vector2(0, 1) * thrust;
+        }
+
+        if (Input.GetKey("a"))
+        {
+            rb2d.AddForce(new Vector2(-1, 0) * thrust);
+            //rb2d.velocity = new Vector2(-1, 0) * thrust;
+        }
+        if (Input.GetKey("s"))
+        {
+            rb2d.AddForce(new Vector2(0, -1) * thrust);
+            //rb2d.velocity = new Vector2(0, -1) * thrust;
+
+        }
+        if (Input.GetKey("d"))
+        {
+            rb2d.AddForce(new Vector2(1, 0) * thrust);
+            //rb2d.velocity = new Vector2(1, 0) * thrust;
+        }
 
         Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -77,8 +101,6 @@ public class PlayerMovementScript : MonoBehaviour
         rotationZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
         direction.Normalize();
-
-        Debug.Log(direction);
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -89,10 +111,21 @@ public class PlayerMovementScript : MonoBehaviour
 
             bullet.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
             // Adds velocity to the bullet
-            bullet.GetComponent<Rigidbody2D>().velocity = direction * 20;
+            bullet.GetComponent<Rigidbody2D>().velocity = direction * shootingForce;
         }
     }
 
-    
+
+    public void OnTriggerStay2D(Collider2D collision)
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (collision.gameObject.tag == "Object")
+            {
+                bulletPrefab = collision.gameObject;
+            }
+        }
+    }
+
 
 }
