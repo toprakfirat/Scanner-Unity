@@ -118,7 +118,7 @@ public class PlayerMovementScript : MonoBehaviour
 
     public void OnTriggerStay2D(Collider2D collision)
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1)) 
         {
             if (collision.gameObject.tag == "Object")
             {
