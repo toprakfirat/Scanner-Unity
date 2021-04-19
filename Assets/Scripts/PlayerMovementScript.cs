@@ -28,8 +28,6 @@ public class PlayerMovementScript : MonoBehaviour
         /*Vector3 pos = transform.position;
         float maxspeed = 20f;
 
-
-
         if (Input.GetKey("w"))
         {
             pos.y += velocity * Time.deltaTime * 1.2f;
