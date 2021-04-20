@@ -11,9 +11,9 @@ public class PlayerMovementScript : MonoBehaviour
     public float shootingForce;
     float rotationZ;
 
-    public float timer = 0f;
-    public float velocity = 0f;
-    public float acceler = 0.5f;
+    //public float timer = 0f;
+    //public float velocity = 0f;
+    //public float acceler = 0.5f;
 
 
     // Start is called before the first frame update
@@ -44,7 +44,7 @@ public class PlayerMovementScript : MonoBehaviour
         }
         if (Input.GetKey("a"))
         {
-            pos.x -= velocity * Time.deltaTime;
+            pos.x -= velocity * Time.del5rtaTime;
         }
 
         //EGER HIC BISIYE BASMIYORSA TIMER'I SIFIRLA
@@ -70,6 +70,15 @@ public class PlayerMovementScript : MonoBehaviour
 
         transform.position = pos;*/
 
+        if (Input.GetKey("left shift"))
+        {
+            thrust = 20;
+
+        }
+        else
+        {
+            thrust = 9;
+        }
         if (Input.GetKey("w"))
         {
             rb2d.AddForce(new Vector2(0, 1) * thrust);
@@ -92,6 +101,7 @@ public class PlayerMovementScript : MonoBehaviour
             rb2d.AddForce(new Vector2(1, 0) * thrust);
             //rb2d.velocity = new Vector2(1, 0) * thrust;
         }
+
 
         Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
