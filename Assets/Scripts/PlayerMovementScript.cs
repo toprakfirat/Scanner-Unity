@@ -72,12 +72,12 @@ public class PlayerMovementScript : MonoBehaviour
 
         if (Input.GetKey("left shift"))
         {
-            thrust = 20;
+            thrust = 50;
 
         }
         else
         {
-            thrust = 9;
+            thrust = 20;
         }
         if (Input.GetKey("w"))
         {
