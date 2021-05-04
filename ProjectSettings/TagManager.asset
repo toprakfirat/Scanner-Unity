@@ -7,6 +7,7 @@ TagManager:
   - Object
   - Enemy
   - Holder
+  - Gem1
   layers:
   - Default
   - TransparentFX

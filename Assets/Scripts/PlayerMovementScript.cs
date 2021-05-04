@@ -16,6 +16,8 @@ public class PlayerMovementScript : MonoBehaviour
     public float staminadec;
     public float staminaregtime;
 
+    public Queue<GameObject> queue;
+
     private bool nottired = true;
     private float tiredtimer = 0.0f;
 
@@ -37,6 +39,7 @@ public class PlayerMovementScript : MonoBehaviour
     void Start()
     {
         rb2d = gameObject.GetComponent<Rigidbody2D>();
+        queue = new Queue<GameObject>();
     }
 
     // Update is called once per frame
@@ -87,7 +90,7 @@ public class PlayerMovementScript : MonoBehaviour
 
         transform.position = pos;*/
 
-        Debug.Log(Time.deltaTime);
+        //Debug.Log(Time.deltaTime);
 
         bool isRunning = Input.GetKey("left shift") && ((Input.GetKey("w")) || (Input.GetKey("a")) || (Input.GetKey("s")) || (Input.GetKey("d")));
 
@@ -164,6 +167,13 @@ public class PlayerMovementScript : MonoBehaviour
             bullet.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
             // Adds velocity to the bullet
             bullet.GetComponent<Rigidbody2D>().velocity = direction * shootingForce;
+            queue.Enqueue(bullet);
+            print(queue.Count);
+            if(queue.Count == 5)
+            {
+                GameObject oldBullet = queue.Dequeue();
+                Destroy(oldBullet);
+            }
         }
     }
 
@@ -172,7 +182,7 @@ public class PlayerMovementScript : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1)) 
         {
-            if (collision.gameObject.tag == "Object")
+            if (collision.gameObject.tag == "Object" || collision.gameObject.tag == "Gem1" || collision.gameObject.tag == "Gem2" || collision.gameObject.tag == "Gem3" || collision.gameObject.tag == "Gem4")
             {
                 bulletPrefab = collision.gameObject;
             }
