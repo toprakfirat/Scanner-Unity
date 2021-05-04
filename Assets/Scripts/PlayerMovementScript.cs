@@ -4,12 +4,29 @@ using UnityEngine;
 
 public class PlayerMovementScript : MonoBehaviour
 {
-    public GameObject bulletPrefab;
+    //-------------------------------
     public Vector2 direction;
-    public Rigidbody2D rb2d;
     public float thrust;
     public float shootingForce;
     float rotationZ;
+
+    public float stamina = 100.0f;
+    public float maxstamina;
+    public float staminainc;
+    public float staminadec;
+    public float staminaregtime;
+
+    private bool nottired = true;
+    private float tiredtimer = 0.0f;
+
+    //===============================
+    public GameObject bulletPrefab;
+
+    public Rigidbody2D rb2d;
+
+
+
+
 
     //public float timer = 0f;
     //public float velocity = 0f;
@@ -70,15 +87,42 @@ public class PlayerMovementScript : MonoBehaviour
 
         transform.position = pos;*/
 
-        if (Input.GetKey("left shift"))
+        Debug.Log(Time.deltaTime);
+
+        bool isRunning = Input.GetKey("left shift") && ((Input.GetKey("w")) || (Input.GetKey("a")) || (Input.GetKey("s")) || (Input.GetKey("d")));
+
+        if (isRunning & nottired)
         {
+            stamina = Mathf.Clamp(stamina - (staminadec * Time.deltaTime), 0.0f, maxstamina);
             thrust = 50;
 
+            if (stamina <= 1)
+            {
+                nottired = false;
+                tiredtimer = 0.0f;
+                tiredtimer += Time.deltaTime;
+            }
+
         }
+
+        else if (tiredtimer >= staminaregtime)
+        {
+            nottired = true;
+            thrust   = 25;
+            stamina  = Mathf.Clamp(stamina + (staminainc * Time.deltaTime), 0.0f, maxstamina);
+        }
+
         else
         {
-            thrust = 20;
+            tiredtimer += Time.deltaTime;
+            thrust = 10; 
         }
+
+
+
+
+
+
         if (Input.GetKey("w"))
         {
             rb2d.AddForce(new Vector2(0, 1) * thrust);
