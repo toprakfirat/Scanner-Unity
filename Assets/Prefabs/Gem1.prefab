@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 2784678107834493488}
   - component: {fileID: 2784678107834493495}
   - component: {fileID: 2784678107834493494}
+  - component: {fileID: 8805936585976302370}
   m_Layer: 0
   m_Name: Gem1
-  m_TagString: Object
+  m_TagString: Gem1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -138,3 +139,17 @@ PolygonCollider2D:
       - {x: 0.5, y: -0.02734375}
       - {x: 0.5, y: 0.015625}
       - {x: 0.0703125, y: 0.25}
+--- !u!114 &8805936585976302370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2784678107834493493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a03de8a7dcdc7847a991ef033959f68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 1, g: 0.51514196, b: 0.025157154, a: 1}
+  startingColor: {r: 0, g: 0, b: 0, a: 0}

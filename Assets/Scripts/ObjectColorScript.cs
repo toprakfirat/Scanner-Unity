@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class ObjectColorScript : MonoBehaviour
 {
+
+    public Color color;
+    public Color startingColor;
     // Start is called before the first frame update
     void Start()
     {
-        
+        startingColor = gameObject.GetComponent<SpriteRenderer>().color;
     }
 
     // Update is called once per frame
@@ -19,7 +22,7 @@ public class ObjectColorScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            gameObject.GetComponent<SpriteRenderer>().color = Color.magenta;
+            gameObject.GetComponent<SpriteRenderer>().color = color;
         }
     }
 
@@ -27,7 +30,7 @@ public class ObjectColorScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+            gameObject.GetComponent<SpriteRenderer>().color = startingColor;
         }
     }
 }

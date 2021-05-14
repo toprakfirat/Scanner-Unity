@@ -5,8 +5,18 @@ TagManager:
   serializedVersion: 2
   tags:
   - Object
-  - Enemy
   - Holder
+  - Gem1
+  - Enemy1
+  - Gem2
+  - Gem3
+  - Gem4
+  - Eyesight
+  - Enemy2
+  - Enemy3
+  - Bullet
+  - Bar
+  - Sight
   layers:
   - Default
   - TransparentFX
